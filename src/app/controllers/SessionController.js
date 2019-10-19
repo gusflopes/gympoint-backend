@@ -6,7 +6,6 @@ import User from '../models/User';
 
 class SessionController {
   async store(req, res) {
-    console.log('Iniciou');
     const schema = Yup.object().shape({
       email: Yup.string()
         .email()
@@ -34,9 +33,19 @@ class SessionController {
     }
 
     // Completar user com as informacoes do database
-    // const { id, name } = user;
+    const { id, name } = user;
 
-    return res.status(200).json({ message: 'OK' });
+    return res.status(200).json({
+      message: 'OK',
+      user: {
+        id,
+        name,
+        email,
+      },
+      token: jwt.sign({ id, email }, authConfig.secret, {
+        expiresIn: authConfig.expiresIn,
+      }),
+    });
   }
 }
 
