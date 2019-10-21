@@ -25,10 +25,10 @@ module.exports = {
         type: Sequelize.STRING,
       },
       weight: {
-        type: Sequelize.STRING,
+        type: Sequelize.FLOAT,
       },
       height: {
-        type: Sequelize.STRING,
+        type: Sequelize.FLOAT,
       },
 
       created_at: {
