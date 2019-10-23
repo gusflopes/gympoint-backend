@@ -7,7 +7,7 @@ import Student from '../models/Student';
 
 const { Op } = require('sequelize');
 
-// Precisa criar todas as regras de negócio.
+// PENDENTE CONFIGURAR NODEMAILER NO Controller.
 
 class EnrollmentController {
   async store(req, res) {
