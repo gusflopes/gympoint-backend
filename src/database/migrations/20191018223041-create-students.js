@@ -22,7 +22,7 @@ module.exports = {
       },
       */
       age: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
       },
       weight: {
         type: Sequelize.FLOAT,

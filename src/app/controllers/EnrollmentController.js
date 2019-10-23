@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { parseISO, addMonths, format } from 'date-fns';
+import { parseISO, addMonths, subDays, format } from 'date-fns';
 import pt from 'date-fns/locale/pt';
 import Enrollment from '../models/Enrollment';
 import Plan from '../models/Plan';
@@ -30,8 +30,9 @@ class EnrollmentController {
     const totalPrice = duration * price;
 
     // Calculate the End Date of the Enrollment.
+    // I subtracted one day at the end so it's possible to renroll ate the same day
     const parsedStartDate = parseISO(start_date);
-    const parsedEndDate = addMonths(parsedStartDate, duration);
+    const parsedEndDate = subDays(addMonths(parsedStartDate, duration), 1);
 
     // Verificar se o aluno tem uma matricula vigente no período
     const enrollmentExists = await Enrollment.findOne({
@@ -75,6 +76,22 @@ class EnrollmentController {
 
   async list(req, res) {
     const enrollment = await Enrollment.findAll();
+
+    return res.status(200).json(enrollment);
+  }
+
+  async details(req, res) {
+    const { id } = req.params;
+
+    const enrollment = await Enrollment.findByPk(id, {
+      include: [
+        {
+          model: Student,
+          as: 'student',
+          attributes: ['name', 'email'],
+        },
+      ],
+    });
 
     return res.status(200).json(enrollment);
   }
