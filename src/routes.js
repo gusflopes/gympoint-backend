@@ -31,6 +31,7 @@ routes.delete('/plans/:id', PlanController.delete);
 
 routes.post('/enrollments', EnrollmentController.store);
 routes.get('/enrollments', EnrollmentController.list);
+routes.get('/enrollments/:id', EnrollmentController.details);
 routes.put('/enrollments/:id', EnrollmentController.update);
 routes.delete('/enrollments/:id', EnrollmentController.delete);
 
