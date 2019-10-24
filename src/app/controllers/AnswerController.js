@@ -3,6 +3,9 @@ import { Op } from 'sequelize';
 import HelpOrder from '../models/HelpOrder';
 import Student from '../models/Student';
 
+import AnswerMail from '../jobs/AnswerMail';
+import Queue from '../../lib/Queue';
+
 class AnswerController {
   async store(req, res) {
     // Validate Schema
@@ -34,7 +37,13 @@ class AnswerController {
 
     const response = await helpOrderExists.update(req.body);
 
-    return res.json(response);
+    // Enviar email
+
+    await Queue.add(AnswerMail.key, {
+      response,
+    });
+
+    return res.status(200).json(response);
   }
 
   async list(req, res) {

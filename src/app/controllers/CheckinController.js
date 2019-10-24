@@ -22,7 +22,7 @@ class CheckinController {
         },
       },
     });
-    if (validateCheckin.length > 5) {
+    if (validateCheckin.length >= 5) {
       return res.json({
         error: 'You already made 5 checkins in the past 7 days.',
       });
