@@ -6,6 +6,8 @@ import StudentController from './app/controllers/StudentController';
 import PlanController from './app/controllers/PlanController';
 import EnrollmentController from './app/controllers/EnrollmentController';
 import CheckinController from './app/controllers/CheckinController';
+import HelpOrderController from './app/controllers/HelpOrderController';
+import AnswerController from './app/controllers/AnswerController';
 
 import authMiddleware from './app/middlewares/auth';
 
@@ -17,8 +19,15 @@ routes.post('/session', SessionController.store);
 routes.post('/students/:id/checkins', CheckinController.store);
 routes.get('/students/:id/checkins', CheckinController.list);
 
+routes.post('/students/:id/help-orders', HelpOrderController.store);
+routes.get('/students/:id/help-orders', HelpOrderController.list);
+
 // middleware
 routes.use(authMiddleware);
+
+// Authenticated Routes
+routes.post('/help-orders/:id/answer', AnswerController.store);
+routes.get('/help-orders/', AnswerController.list);
 
 routes.post('/users', UserController.store);
 routes.put('/users', UserController.update);
