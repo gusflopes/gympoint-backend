@@ -5,6 +5,7 @@ import UserController from './app/controllers/UserController';
 import StudentController from './app/controllers/StudentController';
 import PlanController from './app/controllers/PlanController';
 import EnrollmentController from './app/controllers/EnrollmentController';
+import CheckinController from './app/controllers/CheckinController';
 
 import authMiddleware from './app/middlewares/auth';
 
@@ -12,6 +13,9 @@ const routes = new Router();
 
 routes.get('/', (req, res) => res.json({ message: 'Hello world' }));
 routes.post('/session', SessionController.store);
+
+routes.post('/students/:id/checkins', CheckinController.store);
+routes.get('/students/:id/checkins', CheckinController.list);
 
 // middleware
 routes.use(authMiddleware);
