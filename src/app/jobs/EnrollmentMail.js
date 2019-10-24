@@ -8,23 +8,32 @@ class EnrollmentMail {
   }
 
   async handle({ data }) {
-    const { appointment } = data;
+    const { enrollment } = data;
 
     console.log('A fila executou');
+    console.log(enrollment);
+    console.log(
+      format(parseISO(enrollment.start_date), 'dd/MM/yyyy', {
+        locale: pt,
+      })
+    );
 
     /** *
      * MODIFICAR AQUI !!!!
      */
 
     await Mail.sendMail({
-      to: `${appointment.provider.name} <${appointment.provider.email}>`,
+      to: `${enrollment.student.name} <${enrollment.student.email}>`,
       subject: 'Matrícula confirmada',
       template: 'enrollment',
       context: {
-        provider: appointment.provider.name,
-        appointment: appointment.provider.name,
-        user: appointment.user.name,
-        date: format(parseISO(appointment.date), "dd 'de' MMMM', às' H:mm'h'", {
+        student: enrollment.student.name,
+        plan: enrollment.plan.title,
+        price: enrollment.price,
+        start_date: format(parseISO(enrollment.start_date), 'dd/MM/yyyy', {
+          locale: pt,
+        }),
+        end_date: format(parseISO(enrollment.end_date), 'dd/MM/yyyy', {
           locale: pt,
         }),
       },

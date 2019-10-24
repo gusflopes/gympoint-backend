@@ -5,6 +5,9 @@ import Enrollment from '../models/Enrollment';
 import Plan from '../models/Plan';
 import Student from '../models/Student';
 
+import EnrollmentMail from '../jobs/EnrollmentMail';
+import Queue from '../../lib/Queue';
+
 const { Op } = require('sequelize');
 
 // PENDENTE CONFIGURAR NODEMAILER NO Controller.
@@ -47,7 +50,7 @@ class EnrollmentController {
         {
           model: Student,
           as: 'student',
-          attributes: ['id', 'name'],
+          attributes: ['id', 'name', 'email'],
         },
       ],
     });
@@ -63,12 +66,33 @@ class EnrollmentController {
     }
 
     // Criar nova matrícula
-    const enrollment = await Enrollment.create({
+    const enrollmentSave = await Enrollment.create({
       student_id,
       plan_id,
       price: totalPrice,
       start_date,
       end_date: parsedEndDate,
+    });
+
+    // Pegar os dados completos
+    const enrollment = await Enrollment.findByPk(enrollmentSave.id, {
+      include: [
+        {
+          model: Student,
+          as: 'student',
+          attributes: ['id', 'name', 'email'],
+        },
+        {
+          model: Plan,
+          as: 'plan',
+          attributes: ['id', 'title'],
+        },
+      ],
+    });
+    // Enviar e-mail
+
+    await Queue.add(EnrollmentMail.key, {
+      enrollment,
     });
 
     return res.json(enrollment);
