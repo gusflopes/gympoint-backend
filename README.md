@@ -18,7 +18,8 @@
 
 <p align="center">
   <a href="#rocket-technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#information_source-how-to-use">How To Use</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#construction-functionalities">Functionalities</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#information_source-runnig-for-first-time">How To Use</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#memo-license">License</a>
 </p>
 
@@ -26,20 +27,25 @@
 
 This project was developed with the following technologies:
 
-- [Express](https://expressjs.com)
+- [Express][express]
 - [Node.js][nodejs]
-- [Sequelize](https://sequelize.org)
-- [node-postgres](https://github.com/brianc/node-postgres) and [pg-hstore](https://github.com/scarney81/pg-hstore)
-- [Json Web Tokens](https://jwt.io/)
-- [Nodemailer](https://nodemailer.com/about/)
-- [Bee Queue](https://bee-queue.com/)
-- [dotenv](https://github.com/motdotla/dotenv#readme)
-- [bcryptjs](https://github.com/dcodeIO/bcrypt.js/)
-- [Date-fns](https://date-fns.org/)
-- [express-handlebars](https://github.com/ericf/express-handlebars)
--  [VS Code][vc] with [EditorConfig][vceditconfig] and [ESLint][vceslint]
+- [Sequelize][sequelize]
+- [node-postgres][pg] and [pg-hstore][pg-hstore]
+- [Json Web Tokens][jwt]
+- [Nodemailer][nodemailer]
+- [Bee Queue][bee]
+- [dotenv][dotenv]
+- [bcryptjs][bcryptjs]
+- [Date-fns][date-fns]
+- [express-handlebars][exphbs]
+- [VS Code][vc] with [EditorConfig][vceditconfig] and [ESLint][vceslint]
 
-## :information_source: How To Use
+## :construction: Functionalities
+
+:construction_worker: This section is under development. :construction_worker:
+
+
+## :information_source: Running for First Time
 
 To clone and run this application, you'll need [Git](https://git-scm.com), [Docker](https://www.docker.com), [Node.js v10.16][nodejs] or higher + [Yarn v1.13][yarn] or higher installed on your computer. From your command line:
 
@@ -68,6 +74,7 @@ $ yarn queue
 # Run the Server
 $ yarn dev
 ```
+:information_source: There is an [Insomnia file](./insomnia.json) you can load on your Insomnia to test the routes.
 
 ## :memo: License
 This project is under the MIT license. See the [LICENSE](./LICENSE) for more information.
@@ -81,3 +88,14 @@ Made by Gustavo Lopes :coffe: [Get in touch!](https://www.linkedin.com/in/gusflo
 [vc]: https://code.visualstudio.com/
 [vceditconfig]: https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig
 [vceslint]: https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
+[express]: https://expressjs.com
+[sequelize]: https://sequelize.org
+[pg]:https://github.com/brianc/node-postgres
+[pg-hstore]: https://github.com/scarney81/pg-hstore
+[jwt]: https://jwt.io/
+[nodemailer]: https://nodemailer.com/about/
+[bee]: https://bee-queue.com/
+[dotenv]: https://github.com/motdotla/dotenv#readme
+[bcryptjs]: https://github.com/dcodeIO/bcrypt.js/
+[date-fns]: (https://date-fns.org/)
+[exphbs]: https://github.com/ericf/express-handlebars
