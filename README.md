@@ -26,18 +26,17 @@
 
 This project was developed with the following technologies:
 
-- Express
-- Node.js
-- Sequelize
-- Nodemailer
-- Json Web Token
-- Yup
-- Bee Queue
-- .Env
-- Bcryptjs
-- Date-fns
-- Exphbs
-- Pg + Pg-hstore
+- [Express](https://expressjs.com)
+- [Node.js][nodejs]
+- [Sequelize](https://sequelize.org)
+- [node-postgres](https://github.com/brianc/node-postgres) and [pg-hstore](https://github.com/scarney81/pg-hstore)
+- [Json Web Tokens](https://jwt.io/)
+- [Nodemailer](https://nodemailer.com/about/)
+- [Bee Queue](https://bee-queue.com/)
+- [dotenv](https://github.com/motdotla/dotenv#readme)
+- [bcryptjs](https://github.com/dcodeIO/bcrypt.js/)
+- [Date-fns](https://date-fns.org/)
+- [express-handlebars](https://github.com/ericf/express-handlebars)
 -  [VS Code][vc] with [EditorConfig][vceditconfig] and [ESLint][vceslint]
 
 ## :information_source: How To Use
@@ -54,14 +53,14 @@ $ cd gympoint-backend
 # Install dependencies
 $ yarn install
 
-# Run Migrations & Seeds
-$ yarn sequelize db:migrate && yarn sequelize db:seed
-
 # Run Postgres
 $ docker run --name database -e POSTGRES_PASSWORD=docker -d -p 5432:5432 -d postgres:11
 
 # Run Redis
 $ docker run --name redis -p 6379:6379 -d -t redis:alpine
+
+# Run Migrations & Seeds
+$ yarn sequelize db:migrate && yarn sequelize db:seed
 
 # Run Nodemailer
 $ yarn queue

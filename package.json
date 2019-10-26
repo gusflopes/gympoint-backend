@@ -7,8 +7,11 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon src/server.js",
+    "dev:debug": "nodemon --inspect src/server.js",
     "queue": "nodemon src/queue.js",
-    "dev:debug": "nodemon --inspect src/server.js"
+
+    "build": "docker run --name database -e POSTGRES_PASSWORD=docker -d -p 5432:5432 -d postgres:11 && docker run --name redis -p 6379:6379 -d -t redis:alpine && yarn sequelize db:migrate && yarn sequelize db:seed && #echo Building Done! Now use: yarn start",
+    "database":"docker start database && docker start redis && yarn sequelize db:migrate"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
