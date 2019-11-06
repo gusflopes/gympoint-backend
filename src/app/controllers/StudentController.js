@@ -1,4 +1,5 @@
 import * as Yup from 'yup';
+import { Op } from 'sequelize';
 import Student from '../models/Student';
 
 class StudentController {
@@ -41,6 +42,22 @@ class StudentController {
   }
 
   async list(req, res) {
+    const { name } = req.query;
+
+    // Recebeu name como Query
+    if (name) {
+      const students = await Student.findAll({
+        where: {
+          name: {
+            [Op.iLike]: `%${name}%`,
+          },
+        },
+      });
+
+      return res.status(200).json(students);
+    }
+
+    // Listagem Geral - Sem Query
     const students = await Student.findAll();
 
     return res.status(200).json(students);
