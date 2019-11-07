@@ -9,17 +9,19 @@
     "dev": "nodemon src/server.js",
     "dev:debug": "nodemon --inspect src/server.js",
     "queue": "nodemon src/queue.js",
-
     "build": "docker run --name database -e POSTGRES_PASSWORD=docker -d -p 5432:5432 -d postgres:11 && docker run --name redis -p 6379:6379 -d -t redis:alpine && yarn sequelize db:migrate && yarn sequelize db:seed && #echo Building Done! Now use: yarn start",
-    "database":"docker start database && docker start redis && yarn sequelize db:migrate"
+    "database": "docker start database && docker start redis && yarn sequelize db:migrate"
   },
   "dependencies": {
+    "@sentry/node": "^5.7.1",
     "bcryptjs": "^2.4.3",
     "bee-queue": "^1.2.2",
+    "cors": "^2.8.5",
     "date-fns": "^2.0.0-beta.5",
     "dotenv": "^8.2.0",
     "exphbs": "^1.2.0",
     "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
     "express-handlebars": "^3.1.0",
     "jsonwebtoken": "^8.5.1",
     "nodemailer": "^6.3.1",
@@ -27,6 +29,7 @@
     "pg": "^7.12.1",
     "pg-hstore": "^2.3.3",
     "sequelize": "^5.21.0",
+    "youch": "^2.0.10",
     "yup": "^0.27.0"
   },
   "devDependencies": {
