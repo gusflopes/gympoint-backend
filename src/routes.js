@@ -34,8 +34,9 @@ routes.put('/users', UserController.update);
 
 routes.post('/students', StudentController.store);
 routes.get('/students', StudentController.list);
+routes.get('/students/:id', StudentController.details);
 routes.put('/students/:id', StudentController.update);
-// routes.delete('/students/:id', StudentController.delete);
+routes.delete('/students/:id', StudentController.delete);
 
 routes.post('/plans', PlanController.store);
 routes.get('/plans', PlanController.list);

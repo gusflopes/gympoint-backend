@@ -63,6 +63,14 @@ class StudentController {
     return res.status(200).json(students);
   }
 
+  async details(req, res) {
+    const { id } = req.params;
+
+    const student = await Student.findByPk(id);
+
+    return res.status(200).json(student);
+  }
+
   async update(req, res) {
     const schema = Yup.object().shape({
       name: Yup.string(),
@@ -97,13 +105,11 @@ class StudentController {
     return res.status(200).json(student);
   }
 
-  /* Not using Delete for now
   async delete(req, res) {
     const { id } = req.params;
     Student.destroy({ where: { id } });
     return res.status(200).json({ message: 'Deleted.' });
   }
-  */
 }
 
 export default new StudentController();
