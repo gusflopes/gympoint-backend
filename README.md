@@ -65,8 +65,9 @@ $ docker run --name database -e POSTGRES_PASSWORD=docker -d -p 5432:5432 -d post
 # Run Redis
 $ docker run --name redis -p 6379:6379 -d -t redis:alpine
 
-# Create a new database named `gympoint` and run the following commands:
-# Run Migrations & Seeds
+# Setup the Postgres Database:
+# Create the Database, then run Migrations & Seeds
+$ yarn sequelize db:create 
 $ yarn sequelize db:migrate && yarn sequelize db:seed:all
 
 # Run Nodemailer
