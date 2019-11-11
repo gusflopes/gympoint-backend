@@ -56,6 +56,7 @@ class PlanController {
 
     let plan = await Plan.findByPk(id);
 
+    /*
     if (price !== undefined && price !== plan.price) {
       const planExists = await Plan.findOne({
         where: { price },
@@ -66,6 +67,7 @@ class PlanController {
           .json({ error: 'This price is already in use by another Plan.' });
       }
     }
+    */
 
     plan = await plan.update(req.body);
 
