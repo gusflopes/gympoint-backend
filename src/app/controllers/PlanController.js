@@ -14,13 +14,13 @@ class PlanController {
       return res.status(400).json({ error: 'Validations fails' });
     }
 
-    // planExists based on price
+    // planExists based on title
     const planExists = await Plan.findOne({
-      where: { price: req.body.price },
+      where: { title: req.body.title },
     });
     if (planExists) {
       return res.status(400).json({
-        error: `Plan '${planExists.title}' already uses that price.`,
+        error: `Plan '${planExists.title}' already exists.`,
       });
     }
 
@@ -52,9 +52,21 @@ class PlanController {
     }
 
     const { id } = req.params;
-    const { price } = req.body;
+    // const { title, price } = req.body;
 
     let plan = await Plan.findByPk(id);
+
+    /*
+    // planExists based on title
+    const planExists = await Plan.findOne({
+      where: { title: req.body.title },
+    });
+    if (planExists) {
+      return res.status(400).json({
+        error: `Plan '${planExists.title}' already exists.`,
+      });
+    }
+    */
 
     /*
     if (price !== undefined && price !== plan.price) {
@@ -64,7 +76,7 @@ class PlanController {
       if (planExists) {
         return res
           .status(400)
-          .json({ error: 'This price is already in use by another Plan.' });
+          .json({ error: `This price is already in use by the Plan: ${planExists.title}.` });
       }
     }
     */
