@@ -52,6 +52,13 @@ class AnswerController {
         where: {
           answer: null,
         },
+        include: [
+          {
+            model: Student,
+            as: 'student',
+            attributes: ['id', 'name'],
+          },
+        ],
       });
 
       return res.status(200).json(response);
@@ -62,6 +69,13 @@ class AnswerController {
           [Op.ne]: null,
         },
       },
+      include: [
+        {
+          model: Student,
+          as: 'student',
+          attributes: ['id', 'name'],
+        },
+      ],
     });
 
     return res.status(200).json(response);
