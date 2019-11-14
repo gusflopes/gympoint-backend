@@ -99,7 +99,21 @@ class EnrollmentController {
   }
 
   async list(req, res) {
-    const enrollment = await Enrollment.findAll();
+    const enrollment = await Enrollment.findAll({
+      order: [['end_date', 'DESC']],
+      include: [
+        {
+          model: Student,
+          as: 'student',
+          attributes: ['id', 'name'],
+        },
+        {
+          model: Plan,
+          as: 'plan',
+          attributes: ['id', 'title'],
+        },
+      ],
+    });
 
     return res.status(200).json(enrollment);
   }
