@@ -43,6 +43,7 @@ class HelpOrderController {
       where: {
         student_id: req.params.id,
       },
+      order: [['id', 'DESC']],
     });
 
     return res.status(200).json({ student: student.name, help_order });
