@@ -1,0 +1,21 @@
+version: '3.5'
+
+services:
+  gympoint:
+    container_name: gympoint
+    build: .
+    environment:
+      NODE_ENV: ${NODE_ENV}
+    volumes:
+      - .:/home/node/api
+      - /home/node/api/node_modules
+    ports:
+      - '${APP_PORT}:3333'
+
+networks:
+  default:
+    external:
+      name: backend
+
+volumes:
+  gympoint:
