@@ -67,7 +67,7 @@ $ docker run --name redis -p 6379:6379 -d -t redis:alpine
 
 # Setup the Postgres Database:
 # Create the Database, then run Migrations & Seeds
-$ yarn sequelize db:create 
+$ yarn sequelize db:create
 $ yarn sequelize db:migrate && yarn sequelize db:seed:all
 
 # Run Nodemailer
@@ -75,6 +75,15 @@ $ yarn queue
 
 # Run the Server
 $ yarn dev
+```
+
+Running with Docker
+```
+# Docker-compose with Databases ready
+docker-compose up -d
+
+# Migrations
+docker exec -it gympoint sh -c "yarn sequelize db:seed:all"
 ```
 :information_source: There is an [Insomnia file](./insomnia.json) you can load on your Insomnia to test the routes.
 
