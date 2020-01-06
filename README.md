@@ -13,7 +13,7 @@
 </p>
 
 <h4 align="center">API Rest developed with Node.js, using Postgresql and Redis.</h4>
-<p align="center"><strong>Current Status:</strong> Just finished GoStack Challenge 03.</p>
+<p align="center"><strong>Current Status:</strong> Ready for Delivery</p>
 
 
 <p align="center">
@@ -47,7 +47,20 @@ This project was developed with the following technologies:
 
 ## :information_source: Running for First Time
 
-To clone and run this application, you'll need [Git](https://git-scm.com), [Docker](https://www.docker.com), [Node.js v10.16][nodejs] or higher + [Yarn v1.13][yarn] or higher installed on your computer. From your command line:
+To clone and run this application, you'll need [Git](https://git-scm.com), [Docker](https://www.docker.com), [Node.js v10.16][nodejs] or higher + [Yarn v1.13][yarn] or higher installed on your computer.
+
+**We recommend you run this project using Docker and Docker-compose, so it'll build all the resources needed to run the project.**
+
+**Running with Docker:**
+```bash
+docker-compose up -d
+yarn
+cp .env.example .env
+docker-compose up -d
+docker exec -it gympoint sh -c "yarn sequelize db:seed:all"
+```
+
+**Standalone:**
 
 ```bash
 # Clone this repository
@@ -60,7 +73,7 @@ $ cd gympoint-backend
 $ yarn install
 
 # Run Postgres
-$ docker run --name database -e POSTGRES_PASSWORD=docker -d -p 5432:5432 -d postgres:11
+$ docker run --name database -e POSTGRES_PASSWORD=postgres -d -p 5432:5432 -d postgres:11
 
 # Run Redis
 $ docker run --name redis -p 6379:6379 -d -t redis:alpine
@@ -77,14 +90,7 @@ $ yarn queue
 $ yarn dev
 ```
 
-Running with Docker
-```
-# Docker-compose with Databases ready
-docker-compose up -d
 
-# Migrations
-docker exec -it gympoint sh -c "yarn sequelize db:seed:all"
-```
 :information_source: There is an [Insomnia file](./insomnia.json) you can load on your Insomnia to test the routes.
 
 ## :memo: License
